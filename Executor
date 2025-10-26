@@ -1,0 +1,73 @@
+local g = Instância.new("ScreenGui")
+g.Nome = "ExecutorGUI"
+g.Parent = jogo.Jogadores.JogadorLocal:EsperarCriança("GuiaDoJogador")
+
+quadro local = Instance.new("Quadro")
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Posição = UDim2.new(0,5, -150, 0,5, -100)
+quadro.BackgroundColor3 = Cor3.novo(0, 0, 0)
+frame.BackgroundTransparency = 0,5
+frame.Active = verdadeiro
+frame.Draggable = verdadeiro
+quadro.Parent = gui
+
+título local = Instance.new("TextLabel")
+título.Tamanho = UDim2.novo(1, 0, 0, 30)
+título.BackgroundColor3 = Color3.new(0, 0, 0)
+título.TextColor3 = Color3.new(1, 1, 1)
+título.Fonte = Enum.Fonte.SourceSansBold
+título.TamanhoDoTexto = 18
+title.Text = "Requer Executor"
+título.Parent = quadro
+
+executeSection local = Instance.new("Quadro")
+executeSection.Size = UDim2.new(1, 0, 1, -30)
+executeSection.Position = UDim2.new(0, 0, 0, 30)
+executeSection.BackgroundColor3 = Cor3.novo(0, 0, 0)
+executeSection.BackgroundTransparency = 0,5
+executeSection.Parent = quadro
+
+scriptTextBox local = Instance.new("Caixa de Texto")
+scriptTextBox.Size = UDim2.new(1, -20, 0, 30)
+scriptTextBox.Position = UDim2.new(0, 10, 0, 10)
+scriptTextBox.BackgroundColor3 = Cor3.novo(1, 1, 1)
+scriptTextBox.TextColor3 = Cor3.novo(0, 0, 0)
+scriptTextBox.Font = Enum.Font.SourceSans
+scriptTextBox.TextSize = 14
+scriptTextBox.PlaceholderText = "Digite o script necessário aqui"
+scriptTextBox.Parent = executeSection
+
+executeButton local = Instance.new("TextButton")
+executeButton.Size = UDim2.new(0,5, -15, 0, 30)
+executeButton.Posição = UDim2.new(0, 10, 0, 50)
+executeButton.BackgroundColor3 = Cor3.novo(0, 0,5, 0)
+executeButton.TextColor3 = Color3.new(1, 1, 1)
+executeButton.Font = Enum.Font.SourceSansBold
+executeButton.TextSize = 14
+executeButton.Text = "Executar"
+executeButton.Parent = executeSection
+
+clearButton local = Instância.new("TextButton")
+clearButton.Size = UDim2.new(0,5, -15, 0, 30)
+clearButton.Position = UDim2.new(0,5, 5, 0, 50)
+clearButton.BackgroundColor3 = Cor3.novo(0,5, 0, 0)
+clearButton.TextColor3 = Color3.new(1, 1, 1)
+clearButton.Font = Enum.Font.SourceSansBold
+clearButton.TextSize = 14
+clearButton.Text = "Limpar"
+clearButton.Parent = executeSection
+
+
+função local executeScript()
+    scriptName local = TextBox.Text
+    sucesso local, script = pcall(require, scriptName)
+fim
+
+
+função local clearScript()
+    scriptTextBox.Texto = ""
+fim
+
+
+executeButton.MouseButton1Click:Conectar(executeScript)
+clearButton.MouseButton1Click:Conectar(clearScript)
